@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 import FriendsList from "./components/FriendsList";
 import FriendsForm from "./components/FriendsForm";
@@ -16,14 +17,14 @@ const CLEARED_FRIEND = {
 
 class App extends Component {
   state = {
-    friends: [],
+    //   friends: [],
     newFriend: {
       name: "",
       email: "",
       age: "",
       id: ""
-    },
-    isEditingFriend: false
+    }
+    //   isEditingFriend: false
   };
 
   handleChange = e => {
@@ -98,11 +99,11 @@ class App extends Component {
           newFriend={this.state.newFriend}
           handleChange={this.handleChange}
           addFriendToList={this.addFriendToList}
-          isEditingFriend={this.state.isEditingFriend}
+          isEditingFriend={this.props.isEditingFriend}
           updateFriend={this.updateFriend}
         />
         <FriendsList
-          friends={this.state.friends}
+          friends={this.props.friends}
           editFriend={this.editFriend}
           deleteFriend={this.deleteFriend}
         />
@@ -111,4 +112,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  friends: state.friends,
+  isEditingFriend: state.isEditingFriend
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(App);
