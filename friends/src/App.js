@@ -52,18 +52,6 @@ class App extends Component {
   updateFriend = e => {
     e.preventDefault();
     this.props.updateFriend(this.state.newFriend);
-    // axios
-    //   .put(
-    //     `${BASE_URL}/api/friends/${this.state.newFriend.id}`,
-    //     this.state.newFriend
-    //   )
-    //   .then(res =>
-    //     this.setState({
-    //       friends: res.data,
-    //       newFriend: CLEARED_FRIEND
-    //     })
-    //   )
-    //   .catch(err => console.log(err));
   };
 
   deleteFriend = (e, id) => {

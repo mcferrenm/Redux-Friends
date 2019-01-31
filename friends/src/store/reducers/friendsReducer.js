@@ -5,7 +5,10 @@ import {
   ADD_FRIEND_START,
   ADD_FRIEND_SUCCESS,
   ADD_FRIEND_FAILURE,
-  EDIT_FRIEND_START
+  EDIT_FRIEND_START,
+  UPDATE_FRIEND_START,
+  UPDATE_FRIEND_SUCCESS,
+  UPDATE_FRIEND_FAILURE
 } from "../actions/friendsActions";
 
 const initialState = {
@@ -13,6 +16,7 @@ const initialState = {
   isLoadingFriends: false,
   isAddingFriend: false,
   isEditingFriend: false,
+  isUpdatingFriend: false,
   error: ""
 };
 
@@ -58,6 +62,24 @@ export const friendsReducer = (state = initialState, action) => {
       return {
         ...state,
         isEditingFriend: true
+      };
+    case UPDATE_FRIEND_START:
+      return {
+        ...state,
+        isUpdatingFriend: true,
+        error: ""
+      };
+    case UPDATE_FRIEND_SUCCESS:
+      return {
+        ...state,
+        isUpdatingFriend: false,
+        friends: action.payload
+      };
+    case UPDATE_FRIEND_FAILURE:
+      return {
+        ...state,
+        isUpdatingFriend: false,
+        error: action.payload
       };
     default:
       return state;
