@@ -2,11 +2,7 @@ import React from "react";
 
 const FriendsForm = props => {
   return (
-    <form
-      className="friends-form"
-      onSubmit={props.addFriendToList}
-      autoComplete="off"
-    >
+    <form className="friends-form">
       <input
         type="text"
         name="name"
@@ -25,7 +21,7 @@ const FriendsForm = props => {
         value={props.newFriend.age}
         onChange={props.handleChange}
       />
-      <button type="submit">Add Friend</button>
+      <button onClick={props.addFriendToList}>Add Friend</button>
     </form>
   );
 };

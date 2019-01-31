@@ -21,7 +21,8 @@ class App extends Component {
       name: "",
       email: "",
       age: ""
-    }
+    },
+    isEditingFriend: false
   };
 
   handleChange = e => {
@@ -47,6 +48,14 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  editFriend = id => {
+    const friend = this.state.friends.find(friend => friend.id === id);
+    this.setState({
+      newFriend: friend,
+      isEditingFriend: true
+    });
+  };
+
   componentDidMount() {
     axios
       .get(`${BASE_URL}/api/friends`)
@@ -61,7 +70,10 @@ class App extends Component {
           handleChange={this.handleChange}
           addFriendToList={this.addFriendToList}
         />
-        <FriendsList friends={this.state.friends} />
+        <FriendsList
+          friends={this.state.friends}
+          editFriend={this.editFriend}
+        />
       </div>
     );
   }
