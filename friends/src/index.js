@@ -5,14 +5,14 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 
-import rootReducer from "./store/reducers/friendsReducer";
+import { friendsReducer } from "./store/reducers/friendsReducer";
 
 import "./index.css";
 import App from "./App";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  rootReducer,
+  friendsReducer,
   composeEnhancers(applyMiddleware(thunk, logger))
 );
 

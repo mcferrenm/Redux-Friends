@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import FriendsList from "./components/FriendsList";
 import FriendsForm from "./components/FriendsForm";
-import { getFriends } from "./store/actions/friendsActions";
+import { getFriends, addFriend } from "./store/actions/friendsActions";
 
 import "./App.css";
 
@@ -18,14 +18,12 @@ const CLEARED_FRIEND = {
 
 class App extends Component {
   state = {
-    //   friends: [],
     newFriend: {
       name: "",
       email: "",
       age: "",
       id: ""
     }
-    //   isEditingFriend: false
   };
 
   handleChange = e => {
@@ -40,15 +38,10 @@ class App extends Component {
 
   addFriendToList = e => {
     e.preventDefault();
-    axios
-      .post(`${BASE_URL}/api/friends`, this.state.newFriend)
-      .then(res =>
-        this.setState({
-          friends: res.data,
-          newFriend: CLEARED_FRIEND
-        })
-      )
-      .catch(err => console.log(err));
+    this.props.addFriend(this.state.newFriend);
+    this.setState({
+      newFriend: CLEARED_FRIEND
+    });
   };
 
   updateFriend = e => {
@@ -117,5 +110,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getFriends }
+  { getFriends, addFriend }
 )(App);
