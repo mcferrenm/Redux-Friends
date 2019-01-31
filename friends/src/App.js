@@ -20,7 +20,8 @@ class App extends Component {
     newFriend: {
       name: "",
       email: "",
-      age: ""
+      age: "",
+      id: ""
     },
     isEditingFriend: false
   };
@@ -39,6 +40,22 @@ class App extends Component {
     e.preventDefault();
     axios
       .post(`${BASE_URL}/api/friends`, this.state.newFriend)
+      .then(res =>
+        this.setState({
+          friends: res.data,
+          newFriend: CLEARED_FRIEND
+        })
+      )
+      .catch(err => console.log(err));
+  };
+
+  updateFriend = e => {
+    e.preventDefault();
+    axios
+      .put(
+        `${BASE_URL}/api/friends/${this.state.newFriend.id}`,
+        this.state.newFriend
+      )
       .then(res =>
         this.setState({
           friends: res.data,
@@ -69,6 +86,8 @@ class App extends Component {
           newFriend={this.state.newFriend}
           handleChange={this.handleChange}
           addFriendToList={this.addFriendToList}
+          isEditingFriend={this.state.isEditingFriend}
+          updateFriend={this.updateFriend}
         />
         <FriendsList
           friends={this.state.friends}

@@ -21,7 +21,11 @@ const FriendsForm = props => {
         value={props.newFriend.age}
         onChange={props.handleChange}
       />
-      <button onClick={props.addFriendToList}>Add Friend</button>
+      {props.isEditingFriend ? (
+        <button onClick={props.updateFriend}>Update Friend</button>
+      ) : (
+        <button onClick={props.addFriendToList}>Add Friend</button>
+      )}
     </form>
   );
 };
