@@ -4,7 +4,12 @@ import { connect } from "react-redux";
 
 import FriendsList from "./components/FriendsList";
 import FriendsForm from "./components/FriendsForm";
-import { getFriends, addFriend } from "./store/actions/friendsActions";
+import {
+  getFriends,
+  addFriend,
+  updateFriend,
+  editFriend
+} from "./store/actions/friendsActions";
 
 import "./App.css";
 
@@ -46,18 +51,19 @@ class App extends Component {
 
   updateFriend = e => {
     e.preventDefault();
-    axios
-      .put(
-        `${BASE_URL}/api/friends/${this.state.newFriend.id}`,
-        this.state.newFriend
-      )
-      .then(res =>
-        this.setState({
-          friends: res.data,
-          newFriend: CLEARED_FRIEND
-        })
-      )
-      .catch(err => console.log(err));
+    this.props.updateFriend(this.state.newFriend);
+    // axios
+    //   .put(
+    //     `${BASE_URL}/api/friends/${this.state.newFriend.id}`,
+    //     this.state.newFriend
+    //   )
+    //   .then(res =>
+    //     this.setState({
+    //       friends: res.data,
+    //       newFriend: CLEARED_FRIEND
+    //     })
+    //   )
+    //   .catch(err => console.log(err));
   };
 
   deleteFriend = (e, id) => {
@@ -73,10 +79,12 @@ class App extends Component {
   };
 
   editFriend = id => {
-    const friend = this.state.friends.find(friend => friend.id === id);
+    const friend = this.props.friends.find(friend => friend.id === id);
+
+    this.props.editFriend();
+
     this.setState({
-      newFriend: friend,
-      isEditingFriend: true
+      newFriend: friend
     });
   };
 
@@ -110,5 +118,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getFriends, addFriend }
+  { getFriends, addFriend, updateFriend, editFriend }
 )(App);

@@ -4,13 +4,15 @@ import {
   FETCH_FRIENDS_FAILURE,
   ADD_FRIEND_START,
   ADD_FRIEND_SUCCESS,
-  ADD_FRIEND_FAILURE
+  ADD_FRIEND_FAILURE,
+  EDIT_FRIEND_START
 } from "../actions/friendsActions";
 
 const initialState = {
   friends: [],
   isLoadingFriends: false,
   isAddingFriend: false,
+  isEditingFriend: false,
   error: ""
 };
 
@@ -51,6 +53,11 @@ export const friendsReducer = (state = initialState, action) => {
         ...state,
         isAddingFriend: false,
         error: action.payload
+      };
+    case EDIT_FRIEND_START:
+      return {
+        ...state,
+        isEditingFriend: true
       };
     default:
       return state;
