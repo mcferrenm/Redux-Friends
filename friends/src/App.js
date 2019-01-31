@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import FriendsList from "./components/FriendsList";
+import FriendsForm from "./components/FriendsForm";
+
 import "./App.css";
 
 const BASE_URL = "http://localhost:5000";
@@ -19,6 +21,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <FriendsForm />
         <FriendsList friends={this.state.friends} />
       </div>
     );

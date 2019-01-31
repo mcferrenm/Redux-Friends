@@ -2,9 +2,9 @@ import React from "react";
 
 const FriendsList = props => {
   return (
-    <div>
+    <div className="friends-list">
       {props.friends.map(friend => (
-        <div className="friends-list">
+        <div className="friend">
           <p>{friend.name}</p>
           <p>{friend.email}</p>
           <p>{friend.age}</p>
