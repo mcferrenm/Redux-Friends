@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import FriendsList from "./components/FriendsList";
 import FriendsForm from "./components/FriendsForm";
+import { getFriends } from "./store/actions/friendsActions";
 
 import "./App.css";
 
@@ -87,10 +88,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get(`${BASE_URL}/api/friends`)
-      .then(res => this.setState({ friends: res.data }))
-      .catch(err => console.log(err));
+    this.props.getFriends();
   }
   render() {
     return (
@@ -119,5 +117,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { getFriends }
 )(App);
