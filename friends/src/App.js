@@ -8,6 +8,12 @@ import "./App.css";
 
 const BASE_URL = "http://localhost:5000";
 
+const CLEARED_FRIEND = {
+  name: "",
+  email: "",
+  age: ""
+};
+
 class App extends Component {
   state = {
     friends: [],
@@ -27,6 +33,20 @@ class App extends Component {
       }
     }));
   };
+
+  addFriendToList = e => {
+    e.preventDefault();
+    axios
+      .post(`${BASE_URL}/api/friends`, this.state.newFriend)
+      .then(res =>
+        this.setState({
+          friends: res.data,
+          newFriend: CLEARED_FRIEND
+        })
+      )
+      .catch(err => console.log(err));
+  };
+
   componentDidMount() {
     axios
       .get(`${BASE_URL}/api/friends`)
@@ -39,6 +59,7 @@ class App extends Component {
         <FriendsForm
           newFriend={this.state.newFriend}
           handleChange={this.handleChange}
+          addFriendToList={this.addFriendToList}
         />
         <FriendsList friends={this.state.friends} />
       </div>

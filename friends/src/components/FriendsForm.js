@@ -2,7 +2,11 @@ import React from "react";
 
 const FriendsForm = props => {
   return (
-    <form className="friends-form" action="">
+    <form
+      className="friends-form"
+      onSubmit={props.addFriendToList}
+      autoComplete="off"
+    >
       <input
         type="text"
         name="name"
