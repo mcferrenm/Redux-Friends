@@ -16,7 +16,8 @@ import "./App.css";
 const CLEARED_FRIEND = {
   name: "",
   email: "",
-  age: ""
+  age: "",
+  id: ""
 };
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
       name: "",
       email: "",
       age: "",
-      id: ""
+      id: null
     }
   };
 
@@ -62,9 +63,7 @@ class App extends Component {
 
   editFriend = id => {
     const friend = this.props.friends.find(friend => friend.id === id);
-
     this.props.editFriend();
-
     this.setState({
       newFriend: friend
     });
@@ -76,6 +75,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="title">
+          <h1>Redux Async CRUD App - Friends List</h1>
+        </div>
         <FriendsForm
           newFriend={this.state.newFriend}
           handleChange={this.handleChange}
@@ -94,8 +96,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  friends: state.friends,
-  isEditingFriend: state.isEditingFriend
+  friends: state.friends.friends,
+  isEditingFriend: state.form.isEditingFriend
 });
 
 export default connect(
