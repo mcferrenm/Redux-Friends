@@ -1,0 +1,58 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  padding: 50px;
+  background: lightcoral;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.title h1 {
+  color: white;
+}
+
+.friends-form {
+  padding: 10px;
+  width: 300px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px;
+}
+
+.friends-form input {
+  width: 75%;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  background: rgb(252, 252, 252);
+}
+
+.friends-form button {
+  width: 33%;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1em;
+  background: lightgrey;
+}
+
+.friends-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+}
+
+.friend {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
