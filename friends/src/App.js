@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 
 import FriendsList from "./components/FriendsList";
@@ -8,12 +7,11 @@ import {
   getFriends,
   addFriend,
   updateFriend,
-  editFriend
+  editFriend,
+  deleteFriend
 } from "./store/actions/friendsActions";
 
 import "./App.css";
-
-const BASE_URL = "http://localhost:5000";
 
 const CLEARED_FRIEND = {
   name: "",
@@ -56,14 +54,7 @@ class App extends Component {
 
   deleteFriend = (e, id) => {
     e.preventDefault();
-    axios
-      .delete(`${BASE_URL}/api/friends/${id}`)
-      .then(res =>
-        this.setState({
-          friends: res.data
-        })
-      )
-      .catch(err => console.log(err));
+    this.props.deleteFriend(id);
   };
 
   editFriend = id => {
@@ -106,5 +97,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getFriends, addFriend, updateFriend, editFriend }
+  { getFriends, addFriend, updateFriend, editFriend, deleteFriend }
 )(App);

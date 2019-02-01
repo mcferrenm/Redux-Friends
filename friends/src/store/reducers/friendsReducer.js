@@ -8,7 +8,10 @@ import {
   EDIT_FRIEND_START,
   UPDATE_FRIEND_START,
   UPDATE_FRIEND_SUCCESS,
-  UPDATE_FRIEND_FAILURE
+  UPDATE_FRIEND_FAILURE,
+  DELETE_FRIEND_START,
+  DELETE_FRIEND_SUCCESS,
+  DELETE_FRIEND_FAILURE
 } from "../actions/friendsActions";
 
 const initialState = {
@@ -17,6 +20,7 @@ const initialState = {
   isAddingFriend: false,
   isEditingFriend: false,
   isUpdatingFriend: false,
+  isDeletingFriend: false,
   error: ""
 };
 
@@ -79,6 +83,24 @@ export const friendsReducer = (state = initialState, action) => {
       return {
         ...state,
         isUpdatingFriend: false,
+        error: action.payload
+      };
+    case DELETE_FRIEND_START:
+      return {
+        ...state,
+        isDeletingFriend: true,
+        error: ""
+      };
+    case DELETE_FRIEND_SUCCESS:
+      return {
+        ...state,
+        isDeletingFriend: false,
+        friends: action.payload
+      };
+    case DELETE_FRIEND_FAILURE:
+      return {
+        ...state,
+        isDeletingFriend: false,
         error: action.payload
       };
     default:
