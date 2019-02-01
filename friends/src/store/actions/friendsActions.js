@@ -9,6 +9,7 @@ export const ADD_FRIEND_START = "ADD_FRIEND_START";
 export const ADD_FRIEND_SUCCESS = "ADD_FRIEND_SUCCESS";
 export const ADD_FRIEND_FAILURE = "ADD_FRIEND_FAILURE";
 export const EDIT_FRIEND_START = "EDIT_FRIEND_START";
+export const EDIT_FRIEND_SUCCESS = "EDIT_FRIEND_SUCCESS";
 export const UPDATE_FRIEND_START = "UPDATE_FRIEND_START";
 export const UPDATE_FRIEND_SUCCESS = "UPDATE_FRIEND_SUCCESS";
 export const UPDATE_FRIEND_FAILURE = "UPDATE_FRIEND_FAILURE";
@@ -38,6 +39,7 @@ export const updateFriend = newFriend => dispatch => {
     .put(`${BASE_URL}/api/friends/${newFriend.id}`, newFriend)
     .then(res => dispatch({ type: UPDATE_FRIEND_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: UPDATE_FRIEND_FAILURE, payload: err }));
+  dispatch({ type: EDIT_FRIEND_SUCCESS });
 };
 
 export const editFriend = () => dispatch => {
