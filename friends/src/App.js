@@ -50,6 +50,9 @@ class App extends Component {
   updateFriend = e => {
     e.preventDefault();
     this.props.updateFriend(this.state.newFriend);
+    this.setState({
+      newFriend: CLEARED_FRIEND
+    });
   };
 
   deleteFriend = (e, id) => {

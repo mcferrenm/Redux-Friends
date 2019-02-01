@@ -77,7 +77,8 @@ export const friendsReducer = (state = initialState, action) => {
       return {
         ...state,
         isUpdatingFriend: false,
-        friends: action.payload
+        friends: action.payload,
+        isEditingFriend: false
       };
     case UPDATE_FRIEND_FAILURE:
       return {
